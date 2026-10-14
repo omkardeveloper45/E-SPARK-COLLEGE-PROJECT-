@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Profile – E-SPARK EV</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <div class="brand-icon">⚡</div>
+        <div>
+          <div class="brand-text">E-SPARK <span>EV</span></div>
+          <span class="brand-subtext">EV CHARGING STATION</span>
+        </div>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/booking" class="nav-link">Find Station</a></li>
+        <li><a href="/appointments" class="nav-link">Appointments</a></li>
+        <li><a href="/billing" class="nav-link">Bill & History</a></li>
+        <li><a href="/support" class="nav-link">Support</a></li>
+      </ul>
+      <div class="nav-auth"></div>
+    </div>
+  </nav>
+
+  <div class="page-container">
+    <div class="dashboard-grid">
+      <!-- Sidebar -->
+      <aside class="dashboard-sidebar">
+        <div class="dash-user-card">
+          <img id="profAvatarImage" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80" alt="Avatar" />
+          <div style="margin-top: 0.5rem;">
+            <label for="avatarFileInput" class="btn-outline" style="padding: 0.35rem 0.8rem; font-size: 0.78rem; cursor: pointer;">
+              📷 Upload Photo
+            </label>
+            <input type="file" id="avatarFileInput" accept="image/*" style="display: none;" />
+          </div>
+        </div>
+
+        <nav class="dash-nav">
+          <a href="/dashboard" class="dash-nav-item">⚡ Dashboard Overview</a>
+          <a href="/booking" class="dash-nav-item">📍 Find & Book Station</a>
+          <a href="/appointments" class="dash-nav-item">📅 Appointments</a>
+          <a href="/billing" class="dash-nav-item">💳 Wallet & Payments</a>
+          <a href="/invoice" class="dash-nav-item">📄 Tax Invoices</a>
+          <a href="/profile" class="dash-nav-item active">👤 Profile & Vehicle</a>
+          <a href="/support" class="dash-nav-item">🎧 Customer Support</a>
+        </nav>
+      </aside>
+
+      <!-- Main Profile Settings -->
+      <main>
+        <div style="margin-bottom: 2rem;">
+          <h1 style="font-size: 1.8rem; font-weight: 800; color: #0F172A;">Account & Vehicle Settings</h1>
+          <p style="color: #64748B;">Manage your profile information, vehicle specifications, and security credentials</p>
+        </div>
+
+        <div class="widget-card" style="margin-bottom: 2rem; padding: 2rem;">
+          <h3 style="font-size: 1.2rem; font-weight: 700; color: #0F172A; margin-bottom: 1.25rem;">Personal & Vehicle Information</h3>
+
+          <form id="profileDetailsForm">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label for="profName">Full Name</label>
+                <input type="text" id="profName" class="form-control" required />
+              </div>
+
+              <div class="form-group">
+                <label for="profEmail">Email Address (Read-only)</label>
+                <input type="email" id="profEmail" class="form-control" readonly style="opacity: 0.7; cursor: not-allowed;" />
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label for="profPhone">Phone Number</label>
+                <input type="tel" id="profPhone" class="form-control" />
+              </div>
+
+              <div class="form-group">
+                <label for="profVehicleType">EV Vehicle Type</label>
+                <select id="profVehicleType" class="form-control">
+                  <option value="4-Wheeler (Tata Nexon EV)">4-Wheeler (Tata Nexon EV / MG ZS)</option>
+                  <option value="2-Wheeler (Ather/Ola)">2-Wheeler (Ather / Ola / TVS iQube)</option>
+                  <option value="3-Wheeler (Auto)">3-Wheeler (Mahindra Treo)</option>
+                  <option value="Heavy EV (Bus/Truck)">Heavy EV (Bus / Commercial)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="profVehicleNumber">Vehicle Registration Number</label>
+              <input type="text" id="profVehicleNumber" class="form-control" placeholder="MH-12-EV-2026" />
+            </div>
+
+            <button type="submit" class="btn-primary" style="margin-top: 0.5rem;">
+              Save Profile Changes
+            </button>
+          </form>
+        </div>
+
+        <div class="widget-card" style="padding: 2rem;">
+          <h3 style="font-size: 1.2rem; font-weight: 700; color: #0F172A; margin-bottom: 1.25rem;">Security & Password</h3>
+
+          <form id="profilePasswordForm">
+            <div class="form-group">
+              <label for="currentPassword">Current Password</label>
+              <input type="password" id="currentPassword" class="form-control" required />
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label for="newPassword">New Password</label>
+                <input type="password" id="newPassword" class="form-control" required />
+              </div>
+
+              <div class="form-group">
+                <label for="confirmNewPassword">Confirm New Password</label>
+                <input type="password" id="confirmNewPassword" class="form-control" required />
+              </div>
+            </div>
+
+            <button type="submit" class="btn-outline">
+              Update Password
+            </button>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/profile.js"></script>
+</body>
+</html>

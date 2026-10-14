@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register – E-SPARK EV System</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <div class="brand-icon">⚡</div>
+        <div>
+          <div class="brand-text">E-SPARK <span>EV</span></div>
+          <span class="brand-subtext">EV CHARGING STATION</span>
+        </div>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/booking" class="nav-link">Find Station</a></li>
+        <li><a href="/support" class="nav-link">Support</a></li>
+      </ul>
+      <div class="nav-auth"></div>
+    </div>
+  </nav>
+
+  <div class="page-container">
+    <div class="auth-wrapper" style="max-width: 580px;">
+      <div class="auth-header">
+        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🌱</div>
+        <h1>Create E-SPARK Account</h1>
+        <p>Register your electric vehicle to unlock smart charging</p>
+      </div>
+
+      <form id="registerForm">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label for="regName">Full Name *</label>
+            <input type="text" id="regName" class="form-control" placeholder="Rahul Sharma" required />
+          </div>
+
+          <div class="form-group">
+            <label for="regEmail">Email Address *</label>
+            <input type="email" id="regEmail" class="form-control" placeholder="rahul@espark.com" required />
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label for="regPhone">Phone Number</label>
+            <input type="tel" id="regPhone" class="form-control" placeholder="+91 98765 43210" />
+          </div>
+
+          <div class="form-group">
+            <label for="regVehicleType">Vehicle Type</label>
+            <select id="regVehicleType" class="form-control">
+              <option value="4-Wheeler (Tata Nexon EV)" selected>4-Wheeler (Car/SUV)</option>
+              <option value="2-Wheeler (Ather/Ola)">2-Wheeler (Scooter/Bike)</option>
+              <option value="3-Wheeler (E-Auto)">3-Wheeler (Auto)</option>
+              <option value="Heavy EV (Bus/Truck)">Heavy EV (Bus/Truck)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="regVehicleNumber">Vehicle Registration Number</label>
+          <input type="text" id="regVehicleNumber" class="form-control" placeholder="MH-12-EV-2026" />
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label for="regPassword">Password *</label>
+            <input type="password" id="regPassword" class="form-control" placeholder="At least 6 chars" required />
+          </div>
+
+          <div class="form-group">
+            <label for="regConfirmPassword">Confirm Password *</label>
+            <input type="password" id="regConfirmPassword" class="form-control" placeholder="Re-enter password" required />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary btn-block" style="margin-top: 1.5rem; padding: 0.8rem;">
+          Create Account & Claim ₹500 Bonus
+        </button>
+      </form>
+
+      <div style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: #64748B;">
+        Already registered? <a href="/login" style="color: #059669; font-weight: 700;">Login to Account</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

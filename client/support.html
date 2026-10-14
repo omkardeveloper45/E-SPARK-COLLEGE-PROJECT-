@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support & Help Center – E-SPARK EV</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <div class="brand-icon">⚡</div>
+        <div>
+          <div class="brand-text">E-SPARK <span>EV</span></div>
+          <span class="brand-subtext">EV CHARGING STATION</span>
+        </div>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/booking" class="nav-link">Find Station</a></li>
+        <li><a href="/appointments" class="nav-link">Appointments</a></li>
+        <li><a href="/billing" class="nav-link">Bill & History</a></li>
+        <li><a href="/support" class="nav-link active">Support</a></li>
+      </ul>
+      <div class="nav-auth"></div>
+    </div>
+  </nav>
+
+  <div class="page-container">
+    <div style="text-align: center; max-width: 650px; margin: 0 auto 3rem;">
+      <span class="badge-tag">🎧 24/7 EV ASSISTANCE</span>
+      <h1 style="font-size: 2.2rem; font-weight: 800; color: #0F172A; margin-top: 0.5rem;">How Can We Help You?</h1>
+      <p style="color: #64748B;">Submit a support ticket or browse frequently asked questions</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+      <!-- Submit Support Ticket Form -->
+      <div class="widget-card" style="padding: 2rem;">
+        <h2 style="font-size: 1.3rem; font-weight: 800; color: #0F172A; margin-bottom: 1.25rem;">Create Support Ticket</h2>
+
+        <form id="supportForm">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label for="suppName">Your Name</label>
+              <input type="text" id="suppName" class="form-control" placeholder="Rahul Sharma" />
+            </div>
+
+            <div class="form-group">
+              <label for="suppEmail">Email Address *</label>
+              <input type="email" id="suppEmail" class="form-control" placeholder="rahul@espark.com" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="suppCategory">Category</label>
+            <select id="suppCategory" class="form-control">
+              <option value="Billing & Payment">Billing & Payment Issue</option>
+              <option value="Charger Hardware">Charger Hardware / Connector Issue</option>
+              <option value="Slot Booking">Slot Booking & Cancellation</option>
+              <option value="General Query">General Query</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="suppSubject">Subject *</label>
+            <input type="text" id="suppSubject" class="form-control" placeholder="Brief summary of issue" required />
+          </div>
+
+          <div class="form-group">
+            <label for="suppMessage">Detailed Message *</label>
+            <textarea id="suppMessage" class="form-control" rows="4" placeholder="Describe your charging issue or query in detail..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary btn-block" style="padding: 0.8rem;">
+            Submit Support Ticket
+          </button>
+        </form>
+      </div>
+
+      <!-- FAQ Accordion -->
+      <div>
+        <h2 style="font-size: 1.3rem; font-weight: 800; color: #0F172A; margin-bottom: 1.25rem;">Frequently Asked Questions</h2>
+
+        <div class="widget-card" style="margin-bottom: 1rem; padding: 1.25rem;">
+          <h4 style="font-weight: 700; color: #0F172A; margin-bottom: 0.35rem;">⚡ How do I book an EV charging slot?</h4>
+          <p style="font-size: 0.88rem; color: #64748B;">Go to "Find Station", select your nearest charging station, choose connector plug type & date time slot, and click "Book Slot Now".</p>
+        </div>
+
+        <div class="widget-card" style="margin-bottom: 1rem; padding: 1.25rem;">
+          <h4 style="font-weight: 700; color: #0F172A; margin-bottom: 0.35rem;">💳 What payment methods are supported?</h4>
+          <p style="font-size: 0.88rem; color: #64748B;">We support UPI (GPay, PhonePe, Paytm), Credit & Debit cards, Net Banking, E-SPARK Wallet, and cash payments at station kiosks.</p>
+        </div>
+
+        <div class="widget-card" style="margin-bottom: 1rem; padding: 1.25rem;">
+          <h4 style="font-weight: 700; color: #0F172A; margin-bottom: 0.35rem;">📄 How do I get my Tax Invoice?</h4>
+          <p style="font-size: 0.88rem; color: #64748B;">After payment completion, you are automatically redirected to the Tax Invoice page where you can print or download the PDF.</p>
+        </div>
+
+        <div class="widget-card" style="padding: 1.25rem;">
+          <h4 style="font-weight: 700; color: #0F172A; margin-bottom: 0.35rem;">🔴 Can I stop charging anytime?</h4>
+          <p style="font-size: 0.88rem; color: #64748B;">Yes! Visit "Live Telemetry" page and click "Stop Charging" to terminate energy transfer safely and proceed to final billing.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/support.js"></script>
+</body>
+</html>

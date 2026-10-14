@@ -1,0 +1,6 @@
+{
+  "name": "E-SPARK – EV Charging & Billing System",
+  "description": "Semester 5 Major Project: Full-stack EV Charging, Slot Booking, Telemetry & Billing Platform",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

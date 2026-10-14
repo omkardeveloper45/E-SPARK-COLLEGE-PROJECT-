@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tax Invoice – E-SPARK EV System</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    @media print {
+      .navbar, .footer, .no-print {
+        display: none !important;
+      }
+      .page-container {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .invoice-card {
+        border: none !important;
+        box-shadow: none !important;
+      }
+    }
+      .invoice-shell { position:relative; overflow:hidden; }
+    .invoice-shell::before { content:''; position:absolute; top:0;left:0;right:0;height:7px;background:linear-gradient(90deg,#059669,#10B981,#34D399); }
+    .invoice-meta-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem; }
+    .invoice-info-box { background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:1rem; }
+    .invoice-label { font-size:.68rem;color:#64748B;font-weight:800;text-transform:uppercase;letter-spacing:.06em; }
+    .invoice-value { font-size:.88rem;color:#0F172A;font-weight:750;margin-top:.3rem; }
+    .paid-pill { display:inline-flex;align-items:center;gap:.35rem;background:#D1FAE5;color:#065F46;border-radius:999px;padding:.35rem .7rem;font-size:.72rem;font-weight:800; }
+    .invoice-total-panel { background:linear-gradient(135deg,#ECFDF5,#F0FDFA);border:1px solid #A7F3D0;border-radius:14px;padding:1.25rem; }
+    @media(max-width:700px){.invoice-meta-grid{grid-template-columns:1fr}.invoice-card{padding:1.25rem !important}}
+  </style>
+</head>
+<body>
+
+  <nav class="navbar no-print">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <div class="brand-icon">⚡</div>
+        <div>
+          <div class="brand-text">E-SPARK <span>EV</span></div>
+          <span class="brand-subtext">EV CHARGING STATION</span>
+        </div>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/booking" class="nav-link">Find Station</a></li>
+        <li><a href="/appointments" class="nav-link">Appointments</a></li>
+        <li><a href="/billing" class="nav-link active">Bill & History</a></li>
+        <li><a href="/support" class="nav-link">Support</a></li>
+      </ul>
+      <div class="nav-auth"></div>
+    </div>
+  </nav>
+
+  <div class="page-container">
+    <div style="max-width: 800px; margin: 0 auto;">
+      <div class="no-print" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
+        <a href="/dashboard" style="font-weight: 600; color: #64748B;">← Back to Dashboard</a>
+        <div style="display: flex; gap: 0.75rem;">
+          <button class="btn-outline" onclick="printInvoice()">🖨️ Print Invoice</button>
+          <button class="btn-primary" onclick="downloadInvoicePDF()">📥 Download PDF</button>
+        </div>
+      </div>
+
+      <!-- INVOICE PAPER CARD -->
+      <div class="widget-card invoice-card invoice-shell" style="padding: 3rem; background: #fff; border: 1px solid #CBD5E1; box-shadow: var(--shadow-lg);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 2rem; border-bottom: 2px solid #E2E8F0; margin-bottom: 2rem;">
+          <div>
+            <div class="brand-logo" style="margin-bottom: 0.5rem;">
+              <div class="brand-icon">⚡</div>
+              <div>
+                <div class="brand-text">E-SPARK <span>EV</span></div>
+                <span class="brand-subtext">EV CHARGING STATION</span>
+              </div>
+            </div>
+            <p style="font-size: 0.82rem; color: #64748B;">GSTIN: 27AAAAA0000A1Z5 • ISO 9001 Certified</p>
+          </div>
+
+          <div style="text-align: right;">
+            <h1 style="font-size: 1.8rem; font-weight: 900; color: #059669; letter-spacing: 0.05em;">TAX INVOICE</h1>
+            <div style="font-size: 0.9rem; font-weight: 700; color: #0F172A;" id="invNumber">—</div>
+            <div style="font-size: 0.82rem; color: #64748B;">Date: <span id="invDate">—</span></div>
+          </div>
+        </div>
+
+        <!-- Customer, Appointment & Payment -->
+        <div class="invoice-meta-grid">
+          <div class="invoice-info-box">
+            <div class="invoice-label">Customer</div>
+            <div class="invoice-value" id="invUserName">EV Customer</div>
+            <div style="font-size:.78rem;color:#64748B;" id="invUserEmail">customer@espark.com</div>
+            <div style="font-size:.78rem;color:#64748B;margin-top:.25rem;">Vehicle: <strong id="invUserVehicle">MH-12-EV-2026</strong></div>
+          </div>
+          <div class="invoice-info-box">
+            <div class="invoice-label">Appointment</div>
+            <div class="invoice-value" id="invAppointmentDate">Charging appointment</div>
+            <div style="font-size:.78rem;color:#64748B;" id="invAppointmentTime">Time slot</div>
+            <div style="font-size:.78rem;color:#64748B;margin-top:.25rem;" id="invConnector">CCS2 (DC Fast)</div>
+          </div>
+          <div class="invoice-info-box">
+            <div class="invoice-label">Payment</div>
+            <div class="invoice-value" id="invPaymentMethod">UPI</div>
+            <div style="font-size:.78rem;color:#64748B;" id="invTransaction">Transaction ID</div>
+            <div style="margin-top:.4rem;"><span class="paid-pill">✓ PAID</span></div>
+          </div>
+        </div>
+        <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:1rem;margin-bottom:2rem;">
+          <div class="invoice-label">Charging Station</div>
+          <div style="font-weight:850;color:#0F172A;margin-top:.25rem;" id="invStationName">E-SPARK Charging Station</div>
+          <div style="font-size:.76rem;color:#64748B;margin-top:.2rem;">Service: Appointment-based EV charging</div>
+        </div>
+
+        <!-- Invoice Table -->
+        <table class="table" style="margin-bottom: 2rem;">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Units (kWh)</th>
+              <th>Unit Rate</th>
+              <th style="text-align: right;">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div style="font-weight: 700; color: #0F172A;">EV Charging Energy Consumption</div>
+                <div style="font-size: 0.78rem; color: #64748B;">Appointment-based EV charging service</div>
+              </td>
+              <td id="invUnits">—</td>
+              <td id="invRate">—</td>
+              <td style="text-align: right; font-weight: 700;" id="invLineAmount">₹ 0.00</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Total Calculation Box -->
+        <div style="display:flex;justify-content:flex-end;margin-bottom:2rem;">
+          <div class="invoice-total-panel" style="width:320px;font-size:.9rem;">
+            <div style="display:flex;justify-content:space-between;padding:.4rem 0;color:#64748B;"><span>Charging fee</span><span id="invSubtotal">₹ 0.00</span></div>
+            <div style="display:flex;justify-content:space-between;padding:.4rem 0;color:#64748B;"><span>GST (18%)</span><span id="invGst">₹ 0.00</span></div>
+            <div style="display:flex;justify-content:space-between;padding:.7rem 0 .2rem;border-top:1px solid #A7F3D0;font-weight:900;font-size:1.2rem;color:#047857;"><span>Total Paid</span><span id="invTotal">₹ 0.00</span></div>
+          </div>
+        </div>
+
+        <div style="border-top: 1px dashed #CBD5E1; padding-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; color: #64748B;">
+          <div>
+            <div>Thank you for choosing E-SPARK EV Charging System!</div>
+            <div>This is a computer-generated tax invoice and requires no physical signature.</div>
+          </div>
+          <div style="text-align: right; font-weight: 700; letter-spacing: 0.1em; color: #0F172A;">
+            ||||| | |||| ||||| || |||
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/invoice.js"></script>
+</body>
+</html>

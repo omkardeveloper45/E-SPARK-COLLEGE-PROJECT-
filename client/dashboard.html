@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Dashboard – E-SPARK EV</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <div class="brand-icon">⚡</div>
+        <div>
+          <div class="brand-text">E-SPARK <span>EV</span></div>
+          <span class="brand-subtext">EV CHARGING STATION</span>
+        </div>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/booking" class="nav-link">Find Station</a></li>
+        <li><a href="/appointments" class="nav-link">Appointments</a></li>
+        <li><a href="/billing" class="nav-link">Bill & History</a></li>
+        <li><a href="/support" class="nav-link">Support</a></li>
+      </ul>
+      <div class="nav-auth"></div>
+    </div>
+  </nav>
+
+  <div class="page-container">
+    <div class="dashboard-grid">
+      <!-- Sidebar -->
+      <aside class="dashboard-sidebar">
+        <div class="dash-user-card">
+          <img id="dashUserAvatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80" alt="Avatar" />
+          <h3 id="dashUserName">Rahul Sharma</h3>
+          <p id="dashUserVehicle">MH-12-EV-2026</p>
+        </div>
+
+        <nav class="dash-nav">
+          <a href="/dashboard" class="dash-nav-item active">⚡ Dashboard Overview</a>
+          <a href="/booking" class="dash-nav-item">📍 Find & Book Station</a>
+          <a href="/appointments" class="dash-nav-item">📅 Appointments</a>
+          <a href="/billing" class="dash-nav-item">💳 Wallet & Payments</a>
+          <a href="/invoice" class="dash-nav-item">📄 Tax Invoices</a>
+          <a href="/profile" class="dash-nav-item">👤 Profile & Vehicle</a>
+          <a href="/support" class="dash-nav-item">🎧 Customer Support</a>
+        </nav>
+      </aside>
+
+      <!-- Main Dashboard Content -->
+      <main>
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
+          <div>
+            <h1 style="font-size: 1.8rem; font-weight: 800; color: #0F172A;">Dashboard Summary</h1>
+            <p style="color: #64748B; font-size: 0.9rem;">Monitor your EV charging sessions, wallet, and active bookings</p>
+          </div>
+          <a href="/booking" class="btn-primary">
+            + Reserve Charging Slot
+          </a>
+        </div>
+
+        <!-- Live Session / Appointment Banner -->
+        <div id="dashActiveSessionBox"></div>
+        <div id="dashUpcomingAppointmentBox"></div>
+
+        <!-- Metric Cards -->
+        <div class="metrics-row">
+          <div class="metric-card">
+            <div class="icon-box">💰</div>
+            <div>
+              <div class="metric-val" id="dashWalletBalance">₹ 1,250</div>
+              <div class="metric-lbl">E-SPARK Wallet</div>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="icon-box">📍</div>
+            <div>
+              <div class="metric-val" id="dashTotalBookings">2</div>
+              <div class="metric-lbl">Total Appointments</div>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="icon-box">⚡</div>
+            <div>
+              <div class="metric-val" id="dashTotalEnergy">20 kWh</div>
+              <div class="metric-lbl">Energy Charged</div>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="icon-box">💳</div>
+            <div>
+              <div class="metric-val" id="dashTotalSpent">₹ 320</div>
+              <div class="metric-lbl">Total Payments</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Bookings Table -->
+        <div class="table-card">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+            <h3 style="font-size: 1.1rem; font-weight: 700; color: #0F172A;">Recent Charging Bookings</h3>
+            <a href="/booking" style="font-size: 0.85rem; color: #059669; font-weight: 700;">View All Stations →</a>
+          </div>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Booking ID</th>
+                <th>Station Name</th>
+                <th>Date & Slot</th>
+                <th>Status</th>
+                <th>Amount</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="dashRecentBookingsTable">
+              <tr><td colspan="6" style="text-align: center; color: #64748B;">Loading bookings...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

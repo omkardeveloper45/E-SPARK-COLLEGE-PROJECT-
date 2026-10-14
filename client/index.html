@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-SPARK – EV Charging & Billing System</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar" id="mainNavbar">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <div class="brand-icon">⚡</div>
+        <div>
+          <div class="brand-text">E-SPARK <span>EV</span></div>
+          <span class="brand-subtext">EV CHARGING STATION</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link active">Home</a></li>
+        <li><a href="/booking" class="nav-link">Find Station</a></li>
+        <li><a href="/appointments" class="nav-link">Appointments</a></li>
+        <li><a href="/billing" class="nav-link">Bill & History</a></li>
+        <li><a href="/support" class="nav-link">Support</a></li>
+      </ul>
+
+      <div class="nav-auth">
+        <a href="/login" class="btn-auth-outline">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle></svg>
+          Login / Register
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div>
+      <div class="badge-tag">
+        ⚡ V CHARGING MADE EASY
+      </div>
+      <h1 class="hero-title">
+        Charge Smart.<br />
+        <span class="highlight">Drive Green.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Find nearby charging stations, charge your EV and pay seamlessly. Fast. Safe. Reliable.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="/booking" class="btn-primary">
+          <span>📍</span> Find Nearby Stations
+        </a>
+        <a href="/booking" class="btn-outline">
+          <span>📅</span> Book Appointment
+        </a>
+      </div>
+
+      <div class="hero-highlights">
+        <div class="highlight-item">🌱 Clean Energy</div>
+        <div class="highlight-item">🛡️ Better Future</div>
+        <div class="highlight-item">🌱 Zero Emission</div>
+      </div>
+    </div>
+
+    <div class="hero-graphic-card">
+      <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=800&q=80" alt="E-SPARK Electric Vehicle Charging Station" class="hero-img" />
+    </div>
+  </section>
+
+  <!-- FEATURE CARDS (4 COLUMNS) -->
+  <section class="feature-grid">
+    <a href="/booking" class="feature-card">
+      <div class="feature-icon-box">📍</div>
+      <div>
+        <h3>Find Nearby Stations</h3>
+        <p>Locate charging stations near you instantly.</p>
+      </div>
+      <div class="feature-arrow">→</div>
+    </a>
+
+    <a href="/booking" class="feature-card">
+      <div class="feature-icon-box">⚡</div>
+      <div>
+        <h3>Book & Manage Appointments</h3>
+        <p>Reserve your charging slot in advance and start only at the booked time.</p>
+      </div>
+      <div class="feature-arrow">→</div>
+    </a>
+
+    <a href="/billing" class="feature-card">
+      <div class="feature-icon-box">💳</div>
+      <div>
+        <h3>Secure Payments</h3>
+        <p>Pay securely via UPI, cards or wallet.</p>
+      </div>
+      <div class="feature-arrow">→</div>
+    </a>
+
+    <a href="/invoice" class="feature-card">
+      <div class="feature-icon-box">📄</div>
+      <div>
+        <h3>Billing & History</h3>
+        <p>View invoices and charging history anytime.</p>
+      </div>
+      <div class="feature-arrow">→</div>
+    </a>
+  </section>
+
+  <!-- LOWER WIDGETS SECTION (3 COLUMNS) -->
+  <section class="widgets-grid">
+    <!-- Live Station Status -->
+    <div class="widget-card">
+      <div class="widget-header">
+        <div>
+          <h2>🟢 Live Station Status</h2>
+          <p>Real-time availability.</p>
+        </div>
+      </div>
+      <div id="homeLiveStationsList">
+        <div class="station-live-item">
+          <div class="station-info">
+            <div class="name">📍 City Center Station</div>
+            <div class="distance">2.4 km</div>
+          </div>
+          <span class="status-badge available">Available</span>
+        </div>
+        <div class="station-live-item">
+          <div class="station-info">
+            <div class="name">📍 Green Avenue Station</div>
+            <div class="distance">3.7 km</div>
+          </div>
+          <span class="status-badge available">Available</span>
+        </div>
+        <div class="station-live-item">
+          <div class="station-info">
+            <div class="name">📍 Tech Park Station</div>
+            <div class="distance">5.1 km</div>
+          </div>
+          <span class="status-badge busy">Busy</span>
+        </div>
+      </div>
+      <div style="margin-top: 1rem; border-top: 1px solid #E2E8F0; padding-top: 0.75rem;">
+        <a href="/booking" style="font-weight: 700; font-size: 0.88rem; color: #059669; display: inline-flex; align-items: center; gap: 0.3rem;">
+          View All Stations →
+        </a>
+      </div>
+    </div>
+
+    <!-- Go Green Banner -->
+    <div class="banner-green-card">
+      <div>
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌱</div>
+        <h2 class="banner-title">Go Green<br />Go Electric</h2>
+      </div>
+      <p class="banner-subtext">
+        Every charge you make supports a cleaner tomorrow.
+      </p>
+    </div>
+
+    <!-- Charging Cost Calculator -->
+    <div class="widget-card">
+      <div class="widget-header">
+        <div style="font-size: 1.5rem;">🧮</div>
+        <div>
+          <h2>Charging Calculator</h2>
+          <p>Estimate your charging cost</p>
+        </div>
+      </div>
+
+      <div class="calc-field">
+        <label>Vehicle Type</label>
+        <select id="calcVehicleType">
+          <option value="2-Wheeler">2 Wheeler (Scooter/Bike)</option>
+          <option value="4-Wheeler" selected>4 Wheeler (Car/SUV)</option>
+          <option value="Auto">3 Wheeler (Auto)</option>
+          <option value="Bus">Bus / Heavy EV</option>
+        </select>
+      </div>
+
+      <div class="calc-field">
+        <label>Battery Capacity (kWh)</label>
+        <input type="number" id="calcBatteryCapacity" value="3.0" step="0.5" />
+      </div>
+
+      <div class="calc-field">
+        <label style="display: flex; justify-content: space-between;">
+          <span>Charge Amount (%)</span>
+          <span id="calcChargeAmountVal" style="color: #059669; font-weight: 700;">80%</span>
+        </label>
+        <div class="range-slider-wrap">
+          <input type="range" id="calcChargeAmount" min="10" max="100" value="80" />
+        </div>
+      </div>
+
+      <div class="calc-result-box">
+        <span style="font-size: 0.9rem; font-weight: 600; color: #475569;">Estimated Cost</span>
+        <span class="calc-cost-value" id="calcEstimatedCost">₹ 48.00</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATISTICS STRIP -->
+  <section class="stats-strip">
+    <div class="stats-container">
+      <div class="stat-item">
+        <div class="stat-icon">⚡</div>
+        <div style="text-align: left;">
+          <div class="stat-number">120+</div>
+          <div class="stat-label">Charging Stations</div>
+        </div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon">💚</div>
+        <div style="text-align: left;">
+          <div class="stat-number">98%</div>
+          <div class="stat-label">Uptime</div>
+        </div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon">👤</div>
+        <div style="text-align: left;">
+          <div class="stat-number">25K+</div>
+          <div class="stat-label">Happy Users</div>
+        </div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon">⚡</div>
+        <div style="text-align: left;">
+          <div class="stat-number">1M+</div>
+          <div class="stat-label">Charges Completed</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h2>E-SPARK <span>EV</span></h2>
+        <p style="margin-bottom: 1rem; color: #94A3B8;">E-Spark EV Charging Station.<br />Fast. Safe. Reliable.</p>
+        <div style="display: flex; gap: 1rem;">
+          <a href="#" style="width: 36px; height: 36px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff;">f</a>
+          <a href="#" style="width: 36px; height: 36px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff;">t</a>
+          <a href="#" style="width: 36px; height: 36px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff;">i</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/booking">Find Station</a></li>
+          <li><a href="/booking">Book Appointment</a></li>
+          <li><a href="/billing">Billing & Rates</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Account & Help</h4>
+        <ul class="footer-links">
+          <li><a href="/login">User Login</a></li>
+          <li><a href="/register">Register Vehicle</a></li>
+          <li><a href="/support">Support Center</a></li>
+          <li><a href="/admin">Admin Portal</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 0.5rem;">📍 Main Tech Corridor, City Center</p>
+        <p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 0.5rem;">📞 +91 1800-ESPARK-EV</p>
+        <p style="color: #94A3B8; font-size: 0.88rem;">✉️ support@espark.com</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 E-SPARK EV Charging & Billing System. All rights reserved.</div>
+      <div style="display: flex; gap: 1.5rem;">
+        <a href="/about">About Project</a>
+        <a href="/contact">Privacy Policy</a>
+        <a href="/contact">Terms & Conditions</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/home.js"></script>
+</body>
+</html>

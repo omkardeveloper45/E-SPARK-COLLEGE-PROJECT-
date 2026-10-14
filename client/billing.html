@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secure Payment – E-SPARK EV</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .payment-tabs-bar {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
+    }
+    .payment-tab {
+      padding: 0.75rem 1.25rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--slate-500);
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+    }
+    .payment-tab.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+    .payment-tabs-bar { display:grid; grid-template-columns:repeat(5,1fr); gap:.65rem; border:0; margin-bottom:1.25rem; }
+    .payment-tab { border:1px solid #E2E8F0; border-radius:12px; background:#fff; padding:.85rem .55rem; color:#475569; cursor:pointer; }
+    .payment-tab.active { color:#047857; border:2px solid #10B981; background:#ECFDF5; }
+    .payment-method-form { background:#F8FAFC; border:1px solid #E2E8F0; border-radius:14px; padding:1.1rem; }
+    @media (max-width:700px) { .payment-summary { grid-template-columns:1fr !important; } .payment-tabs-bar { grid-template-columns:repeat(2,1fr); } }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <div class="brand-icon">⚡</div>
+        <div>
+          <div class="brand-text">E-SPARK <span>EV</span></div>
+          <span class="brand-subtext">EV CHARGING STATION</span>
+        </div>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/booking" class="nav-link">Find Station</a></li>
+        <li><a href="/appointments" class="nav-link">Appointments</a></li>
+        <li><a href="/billing" class="nav-link active">Bill & History</a></li>
+        <li><a href="/support" class="nav-link">Support</a></li>
+      </ul>
+      <div class="nav-auth"></div>
+    </div>
+  </nav>
+
+  <div class="page-container">
+    <div style="max-width: 680px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <span class="badge-tag">💳 SECURE EV PAYMENT</span>
+        <h1 style="font-size: 2rem; font-weight: 800; color: #0F172A; margin-top: 0.5rem;">Secure Checkout</h1>
+        <p style="color: #64748B;">Payment is available only after a charging session is completed. The final amount is based on actual energy delivered.</p>
+      </div>
+
+      <div id="billingNoPayment" class="widget-card" style="padding:3rem 2rem;text-align:center;display:none;">
+        <div style="font-size:3rem;margin-bottom:.75rem;">🧾</div>
+        <h2 id="billingNoPaymentTitle" style="font-size:1.45rem;font-weight:900;color:#0F172A;margin-bottom:.5rem;">No Payment Due</h2>
+        <p id="billingNoPaymentText" style="color:#64748B;max-width:520px;margin:0 auto 1.5rem;">Complete a charging session first. Your final bill will be calculated from the actual energy delivered.</p>
+        <a href="/appointments" class="btn-primary">📅 View Appointments</a>
+      </div>
+
+      <div id="billingCheckout" class="widget-card" style="padding:2rem;display:none;">
+        <div class="payment-summary" style="display:grid;grid-template-columns:1.3fr .8fr;gap:1rem;margin-bottom:1.5rem;">
+          <div style="background:linear-gradient(135deg,#0F172A,#1E293B);color:#fff;border-radius:16px;padding:1.25rem;">
+            <div style="font-size:.72rem;letter-spacing:.08em;font-weight:800;opacity:.7;">E-SPARK CHECKOUT</div>
+            <div style="font-size:1.25rem;font-weight:900;margin:.35rem 0;" id="billingStationDisplay">EV Charging Session</div>
+            <div style="font-size:.82rem;opacity:.75;">Secure payment • Digital invoice • GST included</div>
+          </div>
+          <div style="background:#ECFDF5;border:1px solid #A7F3D0;border-radius:16px;padding:1.25rem;">
+            <div style="display:flex;justify-content:space-between;font-size:.82rem;color:#475569;margin-bottom:.55rem;"><span>Charging fee</span><strong id="billingSubtotalDisplay">₹ 0.00</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:.82rem;color:#475569;margin-bottom:.7rem;"><span>GST (18%)</span><strong id="billingGstDisplay">₹ 0.00</strong></div>
+            <div style="border-top:1px solid #A7F3D0;padding-top:.7rem;display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:800;color:#065F46;">Total</span><strong style="font-size:1.45rem;color:#059669;" id="billingTotalAmountDisplay">₹ 0.00</strong></div>
+          </div>
+        </div>
+
+        <div class="payment-tabs-bar">
+          <button class="payment-tab active" data-method="UPI">📱 UPI</button>
+          <button class="payment-tab" data-method="Card">💳 Cards</button>
+          <button class="payment-tab" data-method="Wallet">👛 Wallet</button>
+          <button class="payment-tab" data-method="NetBanking">🏦 Net Banking</button>
+          <button class="payment-tab" data-method="Cash">💵 Cash</button>
+        </div>
+
+        <form id="paymentCheckoutForm">
+          <!-- UPI Form -->
+          <div class="payment-method-form" id="form-upi">
+            <div class="form-group">
+              <label>Enter Virtual Payment Address (VPA / UPI ID)</label>
+              <input type="text" id="upiIdInput" class="form-control" placeholder="rahul@okicici or 9876543210@paytm" />
+            </div>
+            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+              <div style="padding: 0.5rem 1rem; background: #F1F5F9; border-radius: 6px; font-weight: 700; font-size: 0.85rem; color: #334155;">Google Pay</div>
+              <div style="padding: 0.5rem 1rem; background: #F1F5F9; border-radius: 6px; font-weight: 700; font-size: 0.85rem; color: #334155;">PhonePe</div>
+              <div style="padding: 0.5rem 1rem; background: #F1F5F9; border-radius: 6px; font-weight: 700; font-size: 0.85rem; color: #334155;">Paytm UPI</div>
+            </div>
+          </div>
+
+          <!-- Card Form -->
+          <div class="payment-method-form" id="form-card" style="display: none;">
+            <div class="form-group">
+              <label>Card Number</label>
+              <input type="text" id="cardNumberInput" class="form-control" placeholder="4532 •••• •••• 8921" />
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label>Expiry Date</label>
+                <input type="text" class="form-control" placeholder="MM/YY" />
+              </div>
+              <div class="form-group">
+                <label>CVV</label>
+                <input type="password" class="form-control" placeholder="•••" maxlength="3" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Wallet Form -->
+          <div class="payment-method-form" id="form-wallet" style="display: none;">
+            <div style="padding: 1rem; background: #ECFDF5; border-radius: 8px; border: 1px solid #A7F3D0; margin-bottom: 1rem;">
+              <div style="font-size: 0.85rem; font-weight: 700; color: #065F46;">Available E-SPARK Wallet Balance: ₹ 1,250.00</div>
+              <p style="font-size: 0.8rem; color: #047857;">Deduct directly from wallet for instant zero-wait checkout.</p>
+            </div>
+          </div>
+
+          <!-- NetBanking Form -->
+          <div class="payment-method-form" id="form-netbanking" style="display: none;">
+            <div class="form-group">
+              <label>Select Your Bank</label>
+              <select class="form-control">
+                <option>HDFC Bank</option>
+                <option>ICICI Bank</option>
+                <option>State Bank of India (SBI)</option>
+                <option>Axis Bank</option>
+                <option>Kotak Mahindra Bank</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Cash Form -->
+          <div class="payment-method-form" id="form-cash" style="display: none;">
+            <div style="padding: 1rem; background: #F1F5F9; border-radius: 8px; margin-bottom: 1rem;">
+              <div style="font-size: 0.85rem; font-weight: 700; color: #334155;">Pay Cash at Charging Kiosk</div>
+              <p style="font-size: 0.8rem; color: #64748B;">Pay physical cash to the station attendant upon completion.</p>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:.65rem;align-items:center;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:.75rem 1rem;margin-top:1.25rem;color:#64748B;font-size:.78rem;">
+            🔒 Demo payment only • No real money is charged • A digital invoice is generated automatically.
+          </div>
+          <button type="submit" class="btn-primary btn-block" style="padding: 0.95rem; margin-top: 1rem; font-size: 1rem;">
+            🔒 Pay Securely & Generate Invoice
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAYMENT SUCCESS MODAL -->
+  <div class="modal-backdrop" id="paymentSuccessModal">
+    <div class="modal-card" style="text-align: center; padding: 2.5rem;">
+      <div style="width: 64px; height: 64px; background: #D1FAE5; color: #059669; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 1rem;">
+        ✓
+      </div>
+      <h2 style="font-size: 1.6rem; font-weight: 800; color: #0F172A; margin-bottom: 0.5rem;">Payment Successful!</h2>
+      <p style="color: #64748B; font-size: 0.9rem; margin-bottom: 1.5rem;">Your simulated payment has been recorded successfully and your digital invoice is ready.</p>
+
+      <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: var(--radius-md); padding: 1rem; text-align: left; margin-bottom: 1.5rem; font-size: 0.85rem;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+          <span style="color: #64748B;">Payment ID:</span>
+          <span id="successPaymentId" style="font-weight: 700; color: #0F172A;">ESP-PAY-8821</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+          <span style="color: #64748B;">Transaction Ref:</span>
+          <span id="successTxnId" style="font-weight: 700; color: #0F172A;">TXN-998823101</span>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span style="color: #64748B;">Amount Paid:</span>
+          <span id="successAmount" style="font-weight: 800; color: #059669;">₹ 377.60</span>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 1rem; justify-content: center;">
+        <a id="viewInvoiceBtn" href="/invoice" class="btn-primary" style="width: 100%;">
+          📄 View & Download Invoice →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/billing.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us – E-SPARK EV</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <div class="brand-icon">⚡</div>
+        <div>
+          <div class="brand-text">E-SPARK <span>EV</span></div>
+          <span class="brand-subtext">EV CHARGING STATION</span>
+        </div>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/booking" class="nav-link">Find Station</a></li>
+        <li><a href="/about" class="nav-link">About Us</a></li>
+        <li><a href="/support" class="nav-link">Support</a></li>
+      </ul>
+      <div class="nav-auth"></div>
+    </div>
+  </nav>
+
+  <div class="page-container">
+    <div style="text-align: center; max-width: 650px; margin: 0 auto 3rem;">
+      <h1 style="font-size: 2.2rem; font-weight: 800; color: #0F172A; margin-bottom: 0.5rem;">Contact E-SPARK EV Network</h1>
+      <p style="color: #64748B;">Have questions about station installation, enterprise billing, or partnerships?</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+      <div class="widget-card" style="padding: 2rem;">
+        <h2 style="font-size: 1.3rem; font-weight: 800; color: #0F172A; margin-bottom: 1.25rem;">Send Direct Message</h2>
+        <form onsubmit="event.preventDefault(); showToast('Inquiry sent successfully! Our team will contact you shortly.', 'success'); this.reset();">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" class="form-control" required placeholder="Rahul Sharma" />
+          </div>
+
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" class="form-control" required placeholder="rahul@espark.com" />
+          </div>
+
+          <div class="form-group">
+            <label>Message</label>
+            <textarea class="form-control" rows="4" required placeholder="Type your message here..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary btn-block">Send Message</button>
+        </form>
+      </div>
+
+      <div>
+        <div class="widget-card" style="padding: 2rem; margin-bottom: 1.5rem;">
+          <h2 style="font-size: 1.3rem; font-weight: 800; color: #0F172A; margin-bottom: 1rem;">Headquarters Location</h2>
+          <p style="color: #64748B; font-size: 0.9rem; margin-bottom: 1rem;">📍 Block C, Tech Corridor, Main MG Road, City Center, India</p>
+          <p style="color: #64748B; font-size: 0.9rem; margin-bottom: 1rem;">📞 Toll-Free Helpline: 1800-ESPARK-EV (+91 98765 43210)</p>
+          <p style="color: #64748B; font-size: 0.9rem;">✉️ Support Email: support@espark.com</p>
+        </div>
+
+        <div class="widget-card" style="padding: 1.5rem; text-align: center; background: #ECFDF5; border-color: #A7F3D0;">
+          <div style="font-size: 2rem;">⚡</div>
+          <h3 style="font-size: 1.1rem; font-weight: 800; color: #065F46; margin-top: 0.5rem;">Want to Host an EV Charger?</h3>
+          <p style="font-size: 0.85rem; color: #047857; margin-top: 0.25rem;">Partner with E-SPARK to install fast DC chargers at your property and earn revenue.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

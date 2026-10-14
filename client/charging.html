@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Charging Telemetry – E-SPARK EV</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <div class="brand-icon">⚡</div>
+        <div>
+          <div class="brand-text">E-SPARK <span>EV</span></div>
+          <span class="brand-subtext">EV CHARGING STATION</span>
+        </div>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/booking" class="nav-link">Find Station</a></li>
+        <li><a href="/appointments" class="nav-link active">Appointments</a></li>
+        <li><a href="/billing" class="nav-link">Bill & History</a></li>
+        <li><a href="/support" class="nav-link">Support</a></li>
+      </ul>
+      <div class="nav-auth"></div>
+    </div>
+  </nav>
+
+  <div class="page-container">
+    <div id="chargingTelemetryWrapper">
+      <div class="charging-telemetry-box">
+        <span class="badge-tag">⚡ REAL-TIME TELEMETRY</span>
+        <h1 id="telemetryStationName" style="font-size: 2rem; font-weight: 800; color: #0F172A; margin-top: 0.5rem;">City Center Fast Hub</h1>
+        <p id="telemetryConnector" style="color:#64748B;font-size:.9rem;">Connector: CCS2 (DC Fast 60kW) • Session ID: ESP-CS-4091</p>
+        <div id="telemetryLiveStatus" style="display:inline-flex;align-items:center;gap:.45rem;margin:.8rem 0 1.2rem;padding:.45rem .75rem;border-radius:999px;background:#ECFDF5;border:1px solid #A7F3D0;color:#047857;font-size:.78rem;font-weight:800;">● LIVE METER</div>
+
+        <!-- Circular Battery SVG Progress Ring -->
+        <div class="battery-ring-container">
+          <svg class="battery-ring-svg" viewBox="0 0 200 200">
+            <circle class="battery-circle-bg" cx="100" cy="100" r="90"></circle>
+            <circle class="battery-circle-fill" id="batteryCircleFill" cx="100" cy="100" r="90" stroke-dasharray="565 565" stroke-dashoffset="150"></circle>
+          </svg>
+          <div class="battery-text-content">
+            <div class="battery-percent-num" id="batteryPercentNum">78%</div>
+            <div style="font-size: 0.8rem; font-weight: 700; color: #059669; text-transform: uppercase;">Battery SoC</div>
+          </div>
+        </div>
+
+        <!-- Telemetry Stats Grid -->
+        <div class="telemetry-grid">
+          <div class="telemetry-item">
+            <div class="val" id="telemetryKwRate">60 kW</div>
+            <div class="lbl">Charging Speed</div>
+          </div>
+
+          <div class="telemetry-item">
+            <div class="val" id="telemetryEnergyKwh">18.4 kWh</div>
+            <div class="lbl">Energy Delivered</div>
+          </div>
+
+          <div class="telemetry-item">
+            <div class="val" id="telemetryDuration">24m 10s</div>
+            <div class="lbl">Elapsed Time</div>
+          </div>
+
+          <div class="telemetry-item">
+            <div class="val" id="telemetryCurrentCost">₹ 0.00</div>
+            <div class="lbl">Current Charging Fee</div>
+          </div>
+
+          <div class="telemetry-item">
+            <div class="val" id="telemetryPricePerKwh">₹ 0.00</div>
+            <div class="lbl">Rate / kWh</div>
+          </div>
+        </div>
+
+        <div id="chargingActionBtn">
+          <button class="btn-primary" onclick="stopChargingSession()" style="background: #DC2626; border-color: #DC2626; padding: 0.85rem 2rem; font-size: 1rem;">
+            🔴 Stop Charging & Proceed to Payment
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/charging.js"></script>
+</body>
+</html>
